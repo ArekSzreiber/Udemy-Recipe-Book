@@ -9,11 +9,11 @@ const appRoutes: Routes = [
   {path: '', redirectTo: '/recipes', pathMatch: 'full'},
   {
     path: 'recipes', component: RecipesComponent, children: [
-      {path: '', component: RecipeStartComponent, pathMatch: 'full'}
+      {path: '', component: RecipeStartComponent, pathMatch: 'full'},
+      {path: ':id', component: RecipeDetailComponent},
     ]
   },
   {path: 'shopping-list', component: ShoppingListComponent},
-  {path: ':id', component: RecipeDetailComponent}
 ];
 
 @NgModule({
