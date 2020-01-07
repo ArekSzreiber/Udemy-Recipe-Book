@@ -32,7 +32,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       });
   }
 
-  onAddItem(form: NgForm) {
+  onSubmit(form: NgForm) {
     const value = form.value;
     const ingredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
@@ -40,6 +40,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     } else {
       this.shoppingListService.addIngredient(ingredient);
     }
+    form.reset();
+    this.editMode = false;
   }
 
   ngOnDestroy(): void {
