@@ -9,6 +9,27 @@ export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
+    new Recipe('Onion snack',
+      'Good, because it\'s fat.',
+      'https://i.ytimg.com/vi/v1JgnD-hcpw/maxresdefault.jpg',
+      [
+        new Ingredient('Wheat Flour', 0.15),
+        new Ingredient('Potato Flour', 0.02),
+        new Ingredient('Sweet Paprika Powder', 2),
+        new Ingredient('Turmeric', 1),
+        new Ingredient('Chili', 1),
+        new Ingredient('Black Pepper', 2),
+        new Ingredient('Salt', 2),
+        new Ingredient('Coriander', 1),
+        new Ingredient('Marioram', 1),
+        new Ingredient('Water', 0.15),
+        new Ingredient('Onion', 5),
+        new Ingredient('Canola Oil', 1),
+        new Ingredient('Ketchup', 1),
+        new Ingredient('Camembert', 1),
+
+
+      ]),
     new Recipe('Steak',
       'I guess this is steak',
       'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
