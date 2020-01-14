@@ -8,7 +8,7 @@ import {Subject} from 'rxjs';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private initialRecipes: Recipe[] = [
+  private sampleRecipes: Recipe[] = [
     new Recipe('Onion snack',
       'Good, because it\'s fat.',
       'https://i.ytimg.com/vi/v1JgnD-hcpw/maxresdefault.jpg',
@@ -72,6 +72,10 @@ export class RecipeService {
   private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {
+  }
+
+  getSampleRecipes() {
+    return this.sampleRecipes.slice();
   }
 
   getRecipes() {

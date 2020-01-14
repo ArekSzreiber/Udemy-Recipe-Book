@@ -34,4 +34,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }
+
+  onAddSampleData() {
+    this.dataStorageService.addSampleRecipes();
+  }
 }

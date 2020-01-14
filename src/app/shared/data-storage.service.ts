@@ -51,4 +51,16 @@ export class DataStorageService {
     );
 
   }
+
+  addSampleRecipes() {
+    const recipes = this.recipeService.getSampleRecipes();
+    this.http
+      .put(
+        'https://udemy-angular-project-1be0a.firebaseio.com/recipes.json',
+        recipes
+      )
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
 }
