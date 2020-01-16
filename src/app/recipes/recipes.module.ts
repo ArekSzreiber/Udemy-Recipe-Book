@@ -8,6 +8,8 @@ import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AuthGuard} from '../auth/auth.guard';
+import {RecipesResolverService} from './recipes-resolver.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,25 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forChild([{
+      path: 'recipes',
+      component: RecipesComponent,
+      canActivate: [AuthGuard],
+      children: [
+        {path: '', component: RecipeStartComponent, pathMatch: 'full'},
+        {path: 'new', component: RecipeEditComponent},
+        {
+          path: ':id',
+          component: RecipeDetailComponent,
+          resolve: [RecipesResolverService]
+        },
+        {
+          path: ':id/edit',
+          component: RecipeEditComponent,
+          resolve: [RecipesResolverService]
+        },
+      ]
+    }]),
     ReactiveFormsModule,
   ],
   exports: [
