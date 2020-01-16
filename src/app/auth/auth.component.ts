@@ -51,7 +51,7 @@ export class AuthComponent {
       errorMessage => {
         console.log(errorMessage);
         this.error = errorMessage;
-        this.showErrorAlert(error);
+        this.showErrorAlert(this.error);
         this.isLoading = false;
 
       }
