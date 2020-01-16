@@ -44,12 +44,6 @@ import {RecipesResolverService} from './recipes-resolver.service';
     ReactiveFormsModule,
   ],
   exports: [
-    RecipeDetailComponent,
-    RecipeEditComponent,
-    RecipeItemComponent,
-    RecipeListComponent,
-    RecipeStartComponent,
-    RecipesComponent,
   ]
 })
 export class RecipesModule {
