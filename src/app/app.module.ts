@@ -22,7 +22,6 @@ import {AuthModule} from './auth/auth.module';
     CoreModule,
     BrowserModule,
     HttpClientModule,
-    RecipesModule,
     SharedModule,
     ShoppingListModule,
   ],

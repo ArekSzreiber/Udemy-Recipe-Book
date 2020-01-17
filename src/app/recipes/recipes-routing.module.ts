@@ -10,7 +10,7 @@ import {RecipesResolverService} from './recipes-resolver.service';
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'recipes',
+      path: '',
       component: RecipesComponent,
       canActivate: [AuthGuard],
       children: [
