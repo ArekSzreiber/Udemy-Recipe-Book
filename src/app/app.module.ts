@@ -26,3 +26,6 @@ import {CoreModule} from './core.module';
 })
 export class AppModule {
 }
+
+// for AoT compilation
+// ng build --prod
