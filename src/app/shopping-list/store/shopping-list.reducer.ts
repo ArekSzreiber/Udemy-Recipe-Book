@@ -1,6 +1,6 @@
 import {Ingredient} from '../../shared/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions';
-import {Action} from '@ngrx/store';
+import {DELETE_INGREDIENT, UPDATE_INGREDIENT} from './shopping-list.actions';
 
 const initialState = {
   ingredients: [
@@ -22,7 +22,8 @@ export function shoppingListReducer(
       return {
         ...state,
         ingredients: [
-          ...state.ingredients, action.payload
+          ...state.ingredients,
+          action.payload
         ]
       };
     case ShoppingListActions.ADD_INGREDIENTS:
@@ -32,6 +33,28 @@ export function shoppingListReducer(
           ...state.ingredients,
           ...action.payload
         ]
+      };
+    case UPDATE_INGREDIENT:
+      console.log('UPDATE');
+      const ingredient = state.ingredients[action.payload.index];
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.payload.ingredient
+      };
+
+      const updatedIngredients = {...state.ingredients};
+      updatedIngredients[action.payload.index] = updatedIngredient;
+
+      return {
+        ...state,
+        ingredients: updatedIngredients
+      };
+    case DELETE_INGREDIENT:
+      return {
+        ...state,
+        ingredients: state.ingredients.filter((ingredient, index) => {
+          return index !== action.payload;
+        })
       };
     default:
       return state;
