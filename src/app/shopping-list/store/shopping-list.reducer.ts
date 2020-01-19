@@ -24,5 +24,7 @@ export function shoppingListReducer(
           ...state.ingredients, action.payload
         ]
       };
+    default:
+      return state;
   }
 }
