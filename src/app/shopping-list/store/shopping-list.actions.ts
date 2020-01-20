@@ -40,7 +40,7 @@ export class DeleteIngredient implements Action {
 export class StartEdit implements Action {
   readonly type = START_EDIT;
 
-  constructor(payload: number) {
+  constructor(public payload: number) {
   }
 }
 
