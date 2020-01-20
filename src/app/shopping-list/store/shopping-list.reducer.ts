@@ -54,7 +54,7 @@ export function shoppingListReducer(
         ...action.payload
       };
 
-      const updatedIngredients = {...state.ingredients};
+      const updatedIngredients = [...state.ingredients];
       updatedIngredients[state.editedIngredientIndex] = updatedIngredient;
 
       return {
