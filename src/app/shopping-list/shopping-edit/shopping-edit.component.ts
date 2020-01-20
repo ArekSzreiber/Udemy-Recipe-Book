@@ -16,7 +16,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', {static: false}) shoppingListForm: NgForm;
   subscription: Subscription;
   editMode = false;
-  editedItemIndex: number;
   editedItem: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService,
@@ -36,16 +35,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         this.editMode = false;
       }
     });
-    // this.subscription = this.shoppingListService.startedEditing
-    //   .subscribe((index: number) => {
-    //     this.editMode = true;
-    //     this.editedItemIndex = index;
-    //     this.editedItem = this.shoppingListService.getIngredient(index);
-    //     this.shoppingListForm.setValue({
-    //       name: this.editedItem.name,
-    //       amount: this.editedItem.amount,
-    //     });
-    //   });
   }
 
   onSubmit(form: NgForm) {
@@ -54,11 +43,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     if (this.editMode) {
       // this.shoppingListService.updateIngredient(this.editedItemIndex, ingredient);
       this.store.dispatch(
-        new ShoppingListActions.UpdateIngredient(
-          {
-            index: this.editedItemIndex,
-            ingredient: ingredient
-          })
+        new ShoppingListActions.UpdateIngredient(ingredient)
       );
     } else {
       // this.shoppingListService.addIngredient(ingredient);
@@ -81,7 +66,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   onDelete() {
     // this.shoppingListService.deleteIngredient(this.editedItemIndex);
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editedItemIndex));
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
     this.onClear();
   }
 }
