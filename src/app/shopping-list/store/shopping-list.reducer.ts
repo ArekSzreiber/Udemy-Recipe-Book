@@ -47,7 +47,6 @@ export function shoppingListReducer(
         ]
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
-      console.log('UPDATE');
       const ingredient = state.ingredients[state.editedIngredientIndex];
       const updatedIngredient = {
         ...ingredient,
