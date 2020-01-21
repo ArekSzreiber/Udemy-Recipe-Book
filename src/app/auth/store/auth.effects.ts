@@ -1,13 +1,36 @@
-import {Actions, ofType} from '@ngrx/effects';
+import {Actions, ofType, Effect} from '@ngrx/effects';
+import {catchError, map, switchMap} from 'rxjs/operators';
 
-import * as authActions from './auth.actions';
+import * as AuthActions from './auth.actions';
+import {environment} from '../../../environments/environment';
+import {AuthResponseData} from '../auth.service';
+import {HttpClient} from '@angular/common/http';
+import {of} from 'rxjs';
 
 export class AuthEffects {
-
+  @Effect()
   authLogin = this.actions$.pipe(
-    ofType(authActions.LOGIN_START)
+    ofType(AuthActions.LOGIN_START),
+    switchMap((authData: AuthActions.LoginStart) => {
+      return this.http
+        .post<AuthResponseData>(
+          'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebaseAPIKey,
+          {
+            email: authData.payload.email,
+            password: authData.payload.password,
+            returnSecureToken: true
+          }
+        ).pipe(
+          catchError(error => {
+            of();
+          }), map(responseData => {
+            of();
+          })
+        );
+    }),
   );
 
-  constructor(private actions$: Actions) {
+  constructor(private actions$: Actions,
+              private http: HttpClient) {
   }
 }

@@ -13,6 +13,13 @@ export class Login implements Action {
 }
 
 
+export class LoginStart implements Action {
+  type: string = LOGIN_START;
+
+  constructor(public payload: { email: string, password: string }) {
+  }
+}
+
 export class Logout implements Action {
   type: string = LOGOUT;
 }
