@@ -3,10 +3,11 @@ import {User} from '../user.model';
 
 export const LOGIN_START = '[Auth] Login start';
 export const LOGIN = '[Auth] Login';
+export const LOGIN_FAIL = '[Auth] Login fail';
 export const LOGOUT = '[Auth] Logout';
 
 export class Login implements Action {
-  type: string = LOGIN;
+  readonly type: string = LOGIN;
 
   constructor(public payload: User) {
   }
@@ -14,16 +15,27 @@ export class Login implements Action {
 
 
 export class LoginStart implements Action {
-  type: string = LOGIN_START;
+  readonly type: string = LOGIN_START;
 
   constructor(public payload: { email: string, password: string }) {
   }
 }
 
+export class LoginFail implements Action {
+  readonly type: string = LOGIN_FAIL;
+
+  constructor(public payload: string) {
+  }
+
+}
+
 export class Logout implements Action {
-  type: string = LOGOUT;
+  readonly type: string = LOGOUT;
 }
 
 export type AuthActions =
   | Login
-  | Logout;
+  | Logout
+  | LoginStart
+  | LoginFail
+  ;
