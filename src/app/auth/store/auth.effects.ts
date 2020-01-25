@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 import * as AuthActions from './auth.actions';
+import {User} from '../user.model';
 
 export interface AuthResponseData {
   kind: string;
@@ -26,9 +27,9 @@ export class AuthEffects {
     email: string,
     userId: string,
     token: string) {
-    const expirationDate = new Date(
-      new Date().getTime() + expiresIn * 1000
-    );
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, userId, token, expirationDate);
+    localStorage.setItem('userData', JSON.stringify(user));
     return new AuthActions.AuthenticateSuccess({
       email: email,
       userId: userId,
@@ -110,6 +111,19 @@ export class AuthEffects {
     ofType(AuthActions.AUTHENTICATE_SUCCESS, AuthActions.LOGOUT),
     tap(() => {
       this.router.navigate(['/']);
+    })
+  );
+
+  @Effect({dispatch: false})
+  autoLogin = this.actions$.pipe(
+
+  );
+
+  @Effect({dispatch: false})
+  authLogout = this.actions$.pipe(
+    ofType(AuthActions.LOGOUT),
+    tap(() => {
+      localStorage.removeItem('userData');
     })
   );
 
