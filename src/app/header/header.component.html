@@ -4,8 +4,8 @@
       <a routerLink="/" class="navbar-brand">Recipe Book</a>
     </div>
 
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav" style="float: left; min-width: 20em;">
         <li routerLinkActive="active" *ngIf="isAuthenticated">
           <a routerLink="/recipes">Recipes</a>
         </li>
@@ -16,7 +16,7 @@
           <a routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" style="float: left;">
         <li *ngIf="isAuthenticated">
           <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
         </li>
