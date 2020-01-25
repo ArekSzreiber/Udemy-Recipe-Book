@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, ofType, Effect } from '@ngrx/effects';
-import { switchMap, catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 import * as AuthActions from './auth.actions';
-import { User } from '../user.model';
-import { AuthService } from '../auth.service';
+import {User} from '../user.model';
+import {AuthService} from '../auth.service';
 
 export interface AuthResponseData {
   kind: string;
@@ -65,7 +65,7 @@ export class AuthEffects {
       return this.http
         .post<AuthResponseData>(
           'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' +
-            environment.firebaseAPIKey,
+          environment.firebaseAPIKey,
           {
             email: signupAction.payload.email,
             password: signupAction.payload.password,
@@ -98,7 +98,7 @@ export class AuthEffects {
       return this.http
         .post<AuthResponseData>(
           'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' +
-            environment.firebaseAPIKey,
+          environment.firebaseAPIKey,
           {
             email: authData.payload.email,
             password: authData.payload.password,
@@ -124,7 +124,7 @@ export class AuthEffects {
     })
   );
 
-  @Effect({ dispatch: false })
+  @Effect({dispatch: false})
   authRedirect = this.actions$.pipe(
     ofType(AuthActions.AUTHENTICATE_SUCCESS),
     tap(() => {
@@ -143,7 +143,7 @@ export class AuthEffects {
         _tokenExpirationDate: string;
       } = JSON.parse(localStorage.getItem('userData'));
       if (!userData) {
-        return { type: 'DUMMY' };
+        return {type: 'DUMMY'};
       }
 
       const loadedUser = new User(
@@ -171,11 +171,11 @@ export class AuthEffects {
         //   new Date().getTime();
         // this.autoLogout(expirationDuration);
       }
-      return { type: 'DUMMY' };
+      return {type: 'DUMMY'};
     })
   );
 
-  @Effect({ dispatch: false })
+  @Effect({dispatch: false})
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {
@@ -190,5 +190,6 @@ export class AuthEffects {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+  }
 }
