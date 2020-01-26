@@ -4,7 +4,7 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {RecipeService} from '../recipe.service';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../store/app.reducer'
+import * as fromApp from '../../store/app.reducer';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -17,16 +17,16 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
-  get ingredientsControls() {
-    return (this.recipeForm.get('ingredients') as FormArray).controls;
-  }
-
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router,
     private store: Store<fromApp.AppState>,
   ) {
+  }
+
+  get ingredientsControls() {
+    return (this.recipeForm.get('ingredients') as FormArray).controls;
   }
 
   ngOnInit() {
@@ -80,9 +80,9 @@ export class RecipeEditComponent implements OnInit {
     if (this.editMode) {
       this.store.select('recipes').pipe(
         map(recipeState => {
-          return recipeState.recipes.find((recipe,index)=>{
+          return recipeState.recipes.find((recipe, index) => {
             return index === this.id;
-          })
+          });
         })
       ).subscribe(recipe => {
         // const recipe = this.recipeService.getRecipe(this.id);
@@ -102,7 +102,7 @@ export class RecipeEditComponent implements OnInit {
             );
           }
         }
-      })
+      });
     }
 
     this.recipeForm = new FormGroup({
