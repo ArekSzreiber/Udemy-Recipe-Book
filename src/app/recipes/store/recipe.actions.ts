@@ -6,6 +6,7 @@ export const SET_RECIPES = '[Recipes] Set Recipes';
 export const ADD_RECIPE = '[Recipes] Add Recipe';
 export const UPDATE_RECIPE = '[Recipes] Update Recipe';
 export const DELETE_RECIPE = '[Recipes] Delete Recipe';
+export const STORE_RECIPES = '[Recipes] Store Recipes';
 
 export class AddRecipe implements Action {
   readonly type: string = ADD_RECIPE;
@@ -37,11 +38,17 @@ export class SetRecipes implements Action {
   }
 }
 
+export class StoreRecipes implements Action {
+  readonly type: string = STORE_RECIPES;
+  payload: any = null;
+}
+
 
 export type RecipesActions =
   | AddRecipe
   | DeleteRecipe
   | FetchRecipes
   | SetRecipes
+  | StoreRecipes
   | UpdateRecipe
   ;
