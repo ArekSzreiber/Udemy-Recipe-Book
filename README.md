@@ -1,4 +1,4 @@
 # Udemy-Recipe-Book
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+I did this project during my course on the Udemy (Angular - The Complete Guide by Maximilian Schwarzmüller)
 
